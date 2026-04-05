@@ -71,7 +71,8 @@ If you prefer to compile from source:
 
 ```bash
 # Prerequisites: Node.js ≥ 18, npm
-cd app
+cd ncbi-genome-downloader-for-margie/app
+brew install npm #needs to have brew installed in mac (or you can use any other way to install npm)
 npm install
 npm run dist          # builds app/dist/electron/*.dmg
 ```
