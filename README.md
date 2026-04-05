@@ -1,4 +1,6 @@
-# Microbial Reference Genome Downloader
+# ncbi-genome-downloader-for-margie
+
+> **Note:** This repository was set up specifically for **Margie's testing workflow**. It is shared as a private resource for that purpose. It may be used for other research or personal projects at your own discretion — please review the [License](#license) and [NCBI data use policies](https://www.ncbi.nlm.nih.gov/home/about/policies/) before doing so.
 
 A reproducible pipeline for bulk-downloading 2,999 complete bacterial reference genomes from NCBI RefSeq.
 
