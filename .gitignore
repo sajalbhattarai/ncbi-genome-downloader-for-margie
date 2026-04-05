@@ -1,0 +1,46 @@
+# API response cache (large JSON, regeneratable)
+cache/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+
+# Downloaded genome files (large, not tracked)
+genomes/
+batches/
+logs/
+
+# Apptainer image files
+*.sif
+
+# macOS
+.DS_Store
+
+# Environment
+.env
+*.env
+
+# Temporary
+failed_accessions.txt
+*.zip
+*.tmp
+
+# IDE
+.vscode/
+.idea/
+
+# Node / Electron desktop app
+app/node_modules/
+app/dist/
+app/dist-electron/
+*.dmg
+*.dmg.blockmap
+*.AppImage
+*.exe
+
+# Track these explicitly (override above if needed):
+# bacteria_3000.tsv, *.html, *.py, Dockerfile, *.sh, *.slurm, *.md are tracked by default

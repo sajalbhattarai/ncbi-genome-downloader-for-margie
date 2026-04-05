@@ -1,0 +1,92 @@
+Bacillus subtilis|168|GCF_000009045.1|Bacillota [Bacteria]|Bacilli|Bacillales|Bacillaceae|Bacillus|subtilis|soil|aerobe|non_gut|non_pathogenic
+Bacillus anthracis|Ames Ancestor|GCF_000008445.1|Bacillota [Bacteria]|Bacilli|Bacillales|Bacillaceae|Bacillus|anthracis|soil (spores)/clinical|aerobe|non_gut|pathogen (human)
+Listeria monocytogenes|EGD-e|GCF_000196035.1|Bacillota [Bacteria]|Bacilli|Lactobacillales|Listeriaceae|Listeria|monocytogenes|soil/food/clinical|facultative_anaerobe|non_gut|pathogen (human)
+Staphylococcus aureus subsp. aureus|MRSA252|GCF_000011505.1|Bacillota [Bacteria]|Bacilli|Bacillales|Staphylococcaceae|Staphylococcus|aureus|human skin/clinical|facultative_anaerobe|non_gut|pathogen (human)
+Streptococcus pyogenes|M1 GAS|GCF_000006785.2|Bacillota [Bacteria]|Bacilli|Lactobacillales|Streptococcaceae|Streptococcus|pyogenes|human throat/clinical|facultative_anaerobe|non_gut|pathogen (human)
+Streptococcus pneumoniae|TIGR4|GCF_000006885.1|Bacillota [Bacteria]|Bacilli|Lactobacillales|Streptococcaceae|Streptococcus|pneumoniae|human nasopharynx|facultative_anaerobe|non_gut|pathogen (human)
+Enterococcus faecalis|V583|GCF_000007785.1|Bacillota [Bacteria]|Bacilli|Lactobacillales|Enterococcaceae|Enterococcus|faecalis|human gut/clinical|facultative_anaerobe|gut_associated|opportunistic_pathogen
+Lactococcus lactis subsp. lactis|Il1403|GCF_000006865.1|Bacillota [Bacteria]|Bacilli|Lactobacillales|Streptococcaceae|Lactococcus|lactis|dairy/plant|facultative_anaerobe|non_gut|non_pathogenic
+Lactobacillus acidophilus|NCFM|GCF_000011985.1|Bacillota [Bacteria]|Bacilli|Lactobacillales|Lactobacillaceae|Lactobacillus|acidophilus|human gut/dairy|anaerobe|gut_dominant|non_pathogenic
+Lacticaseibacillus rhamnosus|NCTC13764|GCF_900636965.1|Bacillota [Bacteria]|Bacilli|Lactobacillales|Lactobacillaceae|Lacticaseibacillus|rhamnosus|human gut|facultative_anaerobe|gut_dominant|non_pathogenic
+Ligilactobacillus salivarius|B4311|GCF_035231985.1|Bacillota [Bacteria]|Bacilli|Lactobacillales|Lactobacillaceae|Ligilactobacillus|salivarius|human gut/oral|anaerobe|gut_associated|non_pathogenic
+Clostridioides difficile|630|GCF_000009205.2|Bacillota [Bacteria]|Clostridia|Peptostreptococcales|Peptostreptococcaceae|Clostridioides|difficile|human gut (clinical)|obligate_anaerobe|gut_associated|pathogen (human)
+Clostridium botulinum|A str. ATCC 3502|GCF_000063585.1|Bacillota [Bacteria]|Clostridia|Clostridiales|Clostridiaceae|Clostridium|botulinum|soil/sediment|obligate_anaerobe|non_gut|pathogen (human)
+Clostridium perfringens|str. 13|GCF_000009685.1|Bacillota [Bacteria]|Clostridia|Clostridiales|Clostridiaceae|Clostridium|perfringens|soil/gut|obligate_anaerobe|gut_associated|pathogen (human)
+Agathobacter rectalis|ATCC 33656|GCF_000020605.1|Bacillota [Bacteria]|Clostridia|Lachnospirales|Lachnospiraceae|Agathobacter|rectalis|human gut|obligate_anaerobe|gut_dominant|non_pathogenic
+Mediterraneibacter gnavus|ATCC 29149|GCF_009831375.1|Bacillota [Bacteria]|Clostridia|Lachnospirales|Lachnospiraceae|Mediterraneibacter|gnavus|human gut|obligate_anaerobe|gut_dominant|non_pathogenic
+Clostridium butyricum|DSM 10702|GCF_014131795.1|Bacillota [Bacteria]|Clostridia|Clostridiales|Clostridiaceae|Clostridium|butyricum|human gut/soil|obligate_anaerobe|gut_associated|non_pathogenic
+Roseburia intestinalis|L1-82|GCF_900537995.1|Bacillota [Bacteria]|Clostridia|Lachnospirales|Lachnospiraceae|Roseburia|intestinalis|human gut|obligate_anaerobe|gut_dominant|non_pathogenic
+Faecalibacterium prausnitzii|strain 1|GCF_049532955.1|Bacillota [Bacteria]|Clostridia|Oscillospirales|Oscillospiraceae|Faecalibacterium|prausnitzii|human gut|obligate_anaerobe|gut_dominant|non_pathogenic
+Veillonella parvula|DSM 2008|GCF_000024945.1|Bacillota [Bacteria]|Negativicutes|Veillonellales|Veillonellaceae|Veillonella|parvula|human gut/oral|obligate_anaerobe|gut_associated|non_pathogenic
+Erysipelothrix rhusiopathiae|str. Fujisawa|GCF_000270085.1|Bacillota [Bacteria]|Erysipelotrichia|Erysipelothricales|Erysipelotrichaceae|Erysipelothrix|rhusiopathiae|animal/environment|facultative_anaerobe|non_gut|pathogen (animal)
+Bacteroides fragilis|NCTC 9343|GCF_000025985.1|Bacteroidota [Bacteria]|Bacteroidia|Bacteroidales|Bacteroidaceae|Bacteroides|fragilis|human gut|obligate_anaerobe|gut_dominant|opportunistic_pathogen
+Bacteroides thetaiotaomicron|VPI-5482|GCF_000011065.1|Bacteroidota [Bacteria]|Bacteroidia|Bacteroidales|Bacteroidaceae|Bacteroides|thetaiotaomicron|human gut|obligate_anaerobe|gut_dominant|non_pathogenic
+Phocaeicola vulgatus|ATCC 8482|GCF_000012825.1|Bacteroidota [Bacteria]|Bacteroidia|Bacteroidales|Bacteroidaceae|Phocaeicola|vulgatus|human gut|obligate_anaerobe|gut_dominant|non_pathogenic
+Segatella copri|DSM 18205|GCF_020735445.1|Bacteroidota [Bacteria]|Bacteroidia|Bacteroidales|Prevotellaceae|Segatella|copri|human gut|obligate_anaerobe|gut_dominant|non_pathogenic
+Porphyromonas gingivalis|W83|GCF_000007585.1|Bacteroidota [Bacteria]|Bacteroidia|Bacteroidales|Porphyromonadaceae|Porphyromonas|gingivalis|human oral cavity|obligate_anaerobe|non_gut|opportunistic_pathogen
+Alistipes shahii|WAL 8301|GCF_025145845.1|Bacteroidota [Bacteria]|Bacteroidia|Bacteroidales|Rikenellaceae|Alistipes|shahii|human gut|obligate_anaerobe|gut_dominant|non_pathogenic
+Parabacteroides distasonis|ATCC 8503|GCF_000012845.1|Bacteroidota [Bacteria]|Bacteroidia|Bacteroidales|Tannerellaceae|Parabacteroides|distasonis|human gut|obligate_anaerobe|gut_dominant|non_pathogenic
+Flavobacterium johnsoniae|UW101|GCF_000016645.1|Bacteroidota [Bacteria]|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Flavobacterium|johnsoniae|freshwater/soil|aerobe|non_gut|non_pathogenic
+Sphingobacterium mizutaii|NCTC12149|GCF_900187125.1|Bacteroidota [Bacteria]|Sphingobacteriia|Sphingobacteriales|Sphingobacteriaceae|Sphingobacterium|mizutaii|water/clinical|aerobe|non_gut|opportunistic_pathogen
+Mycobacterium tuberculosis|H37Rv|GCF_000195955.2|Actinomycetota [Bacteria]|Actinomycetes|Mycobacteriales|Mycobacteriaceae|Mycobacterium|tuberculosis|human lungs/clinical|aerobe|non_gut|pathogen (human)
+Mycobacterium leprae|MRHRU-235-G|GCF_003253775.1|Actinomycetota [Bacteria]|Actinomycetes|Mycobacteriales|Mycobacteriaceae|Mycobacterium|leprae|obligate intracellular (human)|aerobe|non_gut|pathogen (human)
+Mycolicibacterium smegmatis|Jucho|GCF_022370415.1|Actinomycetota [Bacteria]|Actinomycetes|Mycobacteriales|Mycobacteriaceae|Mycolicibacterium|smegmatis|soil|aerobe|non_gut|non_pathogenic
+Streptomyces avermitilis|MA-4680|GCF_000009765.2|Actinomycetota [Bacteria]|Actinomycetes|Kitasatosporales|Streptomycetaceae|Streptomyces|avermitilis|soil|aerobe|non_gut|non_pathogenic
+Corynebacterium glutamicum|ATCC 13032|GCF_000011325.1|Actinomycetota [Bacteria]|Actinomycetes|Mycobacteriales|Corynebacteriaceae|Corynebacterium|glutamicum|soil|aerobe|non_gut|non_pathogenic
+Bifidobacterium longum|NCC2705|GCF_000007525.1|Actinomycetota [Bacteria]|Actinomycetes|Bifidobacteriales|Bifidobacteriaceae|Bifidobacterium|longum|human gut|anaerobe|gut_dominant|non_pathogenic
+Tropheryma whipplei|TW08/27|GCF_000196075.1|Actinomycetota [Bacteria]|Actinomycetes|Micrococcales|Tropherymataceae|Tropheryma|whipplei|human small intestine|aerobe|gut_associated|pathogen (human)
+Cutibacterium acnes subsp. acnes|NBRC 107605|GCF_006739385.1|Actinomycetota [Bacteria]|Actinomycetes|Propionibacteriales|Propionibacteriaceae|Cutibacterium|acnes|human skin|anaerobe|non_gut|opportunistic_pathogen
+Eggerthella lenta|DSM 2243|GCF_000024265.1|Actinomycetota [Bacteria]|Coriobacteriia|Coriobacteriales|Eggerthellaceae|Eggerthella|lenta|human gut|obligate_anaerobe|gut_dominant|non_pathogenic
+Collinsella aerofaciens|ATCC 25986|GCF_010509075.1|Actinomycetota [Bacteria]|Coriobacteriia|Coriobacteriales|Eggerthellaceae|Collinsella|aerofaciens|human gut|obligate_anaerobe|gut_dominant|non_pathogenic
+Fusobacterium nucleatum subsp. nucleatum|ATCC 25586|GCF_003019295.1|Fusobacteriota [Bacteria]|Fusobacteriia|Fusobacteriales|Fusobacteriaceae|Fusobacterium|nucleatum|human gut/oral|anaerobe|gut_associated|opportunistic_pathogen
+Akkermansia muciniphila|ATCC BAA-835|GCF_000020225.1|Verrucomicrobiota [Bacteria]|Verrucomicrobiae|Verrucomicrobiales|Akkermansiaceae|Akkermansia|muciniphila|human gut|anaerobe|gut_dominant|non_pathogenic
+Helicobacter pylori|26695|GCF_000008525.1|Campylobacterota [Bacteria]|Epsilonproteobacteria|Campylobacterales|Helicobacteraceae|Helicobacter|pylori|human stomach|microaerophile|gut_dominant|pathogen (human)
+Campylobacter jejuni subsp. jejuni|NCTC 11168|GCF_000009085.1|Campylobacterota [Bacteria]|Epsilonproteobacteria|Campylobacterales|Campylobacteraceae|Campylobacter|jejuni|poultry/human gut|microaerophile|gut_associated|pathogen (human)
+Escherichia coli|K-12 substr. MG1655|GCF_000005845.2|Pseudomonadota [Bacteria]|Gammaproteobacteria|Enterobacterales|Enterobacteriaceae|Escherichia|coli|human gut/environment|facultative_anaerobe|gut_dominant|non_pathogenic (model organism)
+Salmonella enterica subsp. enterica serovar Typhimurium|str. LT2|GCF_000006945.2|Pseudomonadota [Bacteria]|Gammaproteobacteria|Enterobacterales|Enterobacteriaceae|Salmonella|enterica|animal/human gut|facultative_anaerobe|gut_associated|pathogen (human)
+Shigella flexneri|2a str. 301|GCF_000006925.2|Pseudomonadota [Bacteria]|Gammaproteobacteria|Enterobacterales|Enterobacteriaceae|Shigella|flexneri|human gut|facultative_anaerobe|gut_associated|pathogen (human)
+Klebsiella pneumoniae subsp. pneumoniae|HS11286|GCF_000240185.1|Pseudomonadota [Bacteria]|Gammaproteobacteria|Enterobacterales|Enterobacteriaceae|Klebsiella|pneumoniae|human gut/clinical|facultative_anaerobe|gut_associated|opportunistic_pathogen
+Yersinia pestis|CO92|GCF_000009065.1|Pseudomonadota [Bacteria]|Gammaproteobacteria|Enterobacterales|Yersiniaceae|Yersinia|pestis|rodent/clinical|facultative_anaerobe|non_gut|pathogen (human)
+Acinetobacter baumannii|ATCC 19606|GCF_009035845.1|Pseudomonadota [Bacteria]|Gammaproteobacteria|Pseudomonadales|Moraxellaceae|Acinetobacter|baumannii|clinical/soil|aerobe|non_gut|opportunistic_pathogen
+Pseudomonas aeruginosa|PAO1|GCF_000006765.1|Pseudomonadota [Bacteria]|Gammaproteobacteria|Pseudomonadales|Pseudomonadaceae|Pseudomonas|aeruginosa|soil/water/clinical|aerobe|non_gut|opportunistic_pathogen
+Vibrio cholerae O1 biovar El Tor|N16961|GCF_000006745.1|Pseudomonadota [Bacteria]|Gammaproteobacteria|Vibrionales|Vibrionaceae|Vibrio|cholerae|aquatic/coastal|facultative_anaerobe|non_gut|pathogen (human)
+Haemophilus influenzae|Rd KW20|GCF_000027305.1|Pseudomonadota [Bacteria]|Gammaproteobacteria|Pasteurellales|Pasteurellaceae|Haemophilus|influenzae|human nasopharynx|facultative_anaerobe|non_gut|pathogen (human)
+Legionella pneumophila subsp. pneumophila|Philadelphia 1|GCF_000008485.1|Pseudomonadota [Bacteria]|Gammaproteobacteria|Legionellales|Legionellaceae|Legionella|pneumophila|aquatic/soil|aerobe|non_gut|pathogen (human)
+Xanthomonas campestris pv. campestris|ATCC 33913|GCF_000007145.1|Pseudomonadota [Bacteria]|Gammaproteobacteria|Xanthomonadales|Xanthomonadaceae|Xanthomonas|campestris|soil/plant|aerobe|non_gut|pathogen (plant)
+Caulobacter vibrioides|CB15|GCF_000006905.1|Pseudomonadota [Bacteria]|Alphaproteobacteria|Caulobacterales|Caulobacteraceae|Caulobacter|vibrioides|freshwater|aerobe|non_gut|non_pathogenic
+Rickettsia prowazekii|Madrid E|GCF_000195735.1|Pseudomonadota [Bacteria]|Alphaproteobacteria|Rickettsiales|Rickettsiaceae|Rickettsia|prowazekii|obligate intracellular (human/louse)|aerobe|non_gut|pathogen (human)
+Agrobacterium fabrum|C58|GCF_000092025.1|Pseudomonadota [Bacteria]|Alphaproteobacteria|Hyphomicrobiales|Rhizobiaceae|Agrobacterium|fabrum|soil/rhizosphere|aerobe|non_gut|pathogen (plant)
+Rhizobium johnstonii|3841|GCF_000009265.1|Pseudomonadota [Bacteria]|Alphaproteobacteria|Hyphomicrobiales|Rhizobiaceae|Rhizobium|johnstonii|soil/rhizosphere|aerobe|non_gut|non_pathogenic
+Brucella melitensis bv. 1|16M|GCF_000007125.1|Pseudomonadota [Bacteria]|Alphaproteobacteria|Hyphomicrobiales|Brucellaceae|Brucella|melitensis|animal/soil|aerobe|non_gut|pathogen (zoonotic)
+Sinorhizobium meliloti|1021|GCF_000006965.1|Pseudomonadota [Bacteria]|Alphaproteobacteria|Hyphomicrobiales|Rhizobiaceae|Sinorhizobium|meliloti|soil/rhizosphere|aerobe|non_gut|non_pathogenic
+Neisseria meningitidis|MC58|GCF_000008805.1|Pseudomonadota [Bacteria]|Betaproteobacteria|Neisseriales|Neisseriaceae|Neisseria|meningitidis|human nasopharynx|aerobe|non_gut|pathogen (human)
+Burkholderia pseudomallei|K96243|GCF_000011545.1|Pseudomonadota [Bacteria]|Betaproteobacteria|Burkholderiales|Burkholderiaceae|Burkholderia|pseudomallei|soil/water (tropical)|aerobe|non_gut|pathogen (human)
+Ralstonia pseudosolanacearum|GMI1000|GCF_000009125.1|Pseudomonadota [Bacteria]|Betaproteobacteria|Burkholderiales|Burkholderiaceae|Ralstonia|pseudosolanacearum|soil/plant|aerobe|non_gut|pathogen (plant)
+Nitrosomonas europaea|ATCC 19718|GCF_000009145.1|Pseudomonadota [Bacteria]|Betaproteobacteria|Nitrosomonadales|Nitrosomonadaceae|Nitrosomonas|europaea|soil/freshwater|aerobe|non_gut|non_pathogenic
+Nitratidesulfovibrio vulgaris|Hildenborough|GCF_000195755.1|Pseudomonadota [Bacteria]|Deltaproteobacteria|Desulfovibrionales|Desulfovibrionaceae|Nitratidesulfovibrio|vulgaris|soil/sediment/freshwater|obligate_anaerobe|gut_associated|non_pathogenic
+Myxococcus xanthus|DK 1622|GCF_000012685.1|Pseudomonadota [Bacteria]|Deltaproteobacteria|Myxococcales|Myxococcaceae|Myxococcus|xanthus|soil|aerobe|non_gut|non_pathogenic
+Geobacter sulfurreducens|PCA|GCF_000007985.2|Pseudomonadota [Bacteria]|Deltaproteobacteria|Desulfuromonadales|Geobacteraceae|Geobacter|sulfurreducens|soil/sediment/subsurface|anaerobe|non_gut|non_pathogenic
+Bdellovibrio bacteriovorus|HD100|GCF_000196175.1|Pseudomonadota [Bacteria]|Deltaproteobacteria|Bdellovibrionales|Bdellovibrionaceae|Bdellovibrio|bacteriovorus|soil/freshwater|aerobe|non_gut|non_pathogenic
+Treponema pallidum subsp. pallidum|Nichols|GCF_000008605.1|Spirochaetota [Bacteria]|Spirochaetia|Spirochaetales|Treponemataceae|Treponema|pallidum|obligate intracellular (human)|microaerophile|non_gut|pathogen (human)
+Borreliella burgdorferi|B31|GCF_000008685.2|Spirochaetota [Bacteria]|Spirochaetia|Spirochaetales|Borreliaceae|Borreliella|burgdorferi|tick/mammal|microaerophile|non_gut|pathogen (human)
+Leptospira interrogans serovar Lai|56601|GCF_000092565.1|Spirochaetota [Bacteria]|Spirochaetia|Leptospirales|Leptospiraceae|Leptospira|interrogans|soil/water/animal|aerobe|non_gut|pathogen (zoonotic)
+Treponema denticola|ATCC 35405|GCF_000008185.1|Spirochaetota [Bacteria]|Spirochaetia|Spirochaetales|Treponemataceae|Treponema|denticola|human oral cavity|anaerobe|non_gut|opportunistic_pathogen
+Chlamydia trachomatis|D/UW-3/CX|GCF_000008725.1|Chlamydiota [Bacteria]|Chlamydiia|Chlamydiales|Chlamydiaceae|Chlamydia|trachomatis|obligate intracellular (human)|aerobe|non_gut|pathogen (human)
+Chlamydia pneumoniae|CWL029|GCF_000008745.1|Chlamydiota [Bacteria]|Chlamydiia|Chlamydiales|Chlamydiaceae|Chlamydia|pneumoniae|obligate intracellular (human)|aerobe|non_gut|pathogen (human)
+Deinococcus radiodurans|R1|GCF_000008565.1|Deinococcota [Bacteria]|Deinococci|Deinococcales|Deinococcaceae|Deinococcus|radiodurans|soil/radioactive environments|aerobe|non_gut|non_pathogenic
+Thermus thermophilus|HB27|GCF_000008125.1|Deinococcota [Bacteria]|Deinococci|Thermales|Thermaceae|Thermus|thermophilus|hot springs|aerobe|non_gut|non_pathogenic
+Synechocystis sp.|PCC 6803|GCF_000009725.1|Cyanobacteriota [Bacteria]|Cyanophyceae|Synechococcales|Merismopediaceae|Synechocystis|sp.|freshwater|aerobe|non_gut|non_pathogenic
+Trichormus variabilis|ATCC 29413|GCF_000204075.1|Cyanobacteriota [Bacteria]|Cyanophyceae|Nostocales|Nostocaceae|Trichormus|variabilis|freshwater|aerobe|non_gut|non_pathogenic
+Prochlorococcus marinus|MIT 9313|GCF_000011485.1|Cyanobacteriota [Bacteria]|Cyanophyceae|Synechococcales|Prochlorococcaceae|Prochlorococcus|marinus|marine (open ocean)|aerobe|non_gut|non_pathogenic
+Chloroflexus aurantiacus|J-10-fl|GCF_000018865.1|Chloroflexota [Bacteria]|Chloroflexia|Chloroflexales|Chloroflexaceae|Chloroflexus|aurantiacus|hot springs|facultative_anaerobe|non_gut|non_pathogenic
+Dehalococcoides mccartyi|195|GCF_000011905.1|Chloroflexota [Bacteria]|Dehalococcoidia|Dehalococcoidales|Dehalococcoidaceae|Dehalococcoides|mccartyi|contaminated groundwater/subsurface|obligate_anaerobe|non_gut|non_pathogenic
+Aquifex aeolicus|VF5|GCF_000008625.1|Aquificota [Bacteria]|Aquificia|Aquificales|Aquificaceae|Aquifex|aeolicus|hydrothermal vents/hot springs|microaerophile|non_gut|non_pathogenic
+Thermotoga maritima|MSB8|GCF_000008545.1|Thermotogota [Bacteria]|Thermotogae|Thermotogales|Thermotogaceae|Thermotoga|maritima|hydrothermal vents|anaerobe|non_gut|non_pathogenic
+Acidobacterium capsulatum|ATCC 51196|GCF_000022565.1|Acidobacteriota [Bacteria]|Acidobacteriia|Acidobacteriales|Acidobacteriaceae|Acidobacterium|capsulatum|acidic soil/environments|facultative_anaerobe|non_gut|non_pathogenic
+Fibrobacter succinogenes subsp. succinogenes|S85|GCF_000146505.1|Fibrobacterota [Bacteria]|Fibrobacteria|Fibrobacterales|Fibrobacteraceae|Fibrobacter|succinogenes|rumen|obligate_anaerobe|non_gut|non_pathogenic
+Aminobacterium colombiense|DSM 12261|GCF_000025885.1|Synergistota [Bacteria]|Synergistia|Synergistales|Synergistaceae|Aminobacterium|colombiense|anaerobic sewage/gut|obligate_anaerobe|gut_associated|non_pathogenic
+Mycoplasmoides genitalium|G37|GCF_000027325.1|Mycoplasmota [Bacteria]|Mollicutes|Mycoplasmatales|Mycoplasmataceae|Mycoplasmoides|genitalium|human urogenital tract|aerobe|non_gut|pathogen (human)
+Mycoplasmoides pneumoniae|M129|GCF_000027345.1|Mycoplasmota [Bacteria]|Mollicutes|Mycoplasmatales|Mycoplasmataceae|Mycoplasmoides|pneumoniae|human respiratory tract|aerobe|non_gut|pathogen (human)
+Ureaplasma parvum serovar 3|ATCC 700970|GCF_000006625.1|Mycoplasmota [Bacteria]|Mollicutes|Mycoplasmatales|Mycoplasmataceae|Ureaplasma|parvum|human urogenital tract|aerobe|non_gut|opportunistic_pathogen
+Nitrospira moscoviensis|NSP M-1|GCF_001273775.1|Nitrospirota [Bacteria]|Nitrospira|Nitrospirales|Nitrospiraceae|Nitrospira|moscoviensis|freshwater/wastewater|aerobe|non_gut|non_pathogenic
+Gemmata obscuriglobus|DSM 5831|GCF_003149495.1|Planctomycetota [Bacteria]|Planctomycetia|Planctomycetales|Gemmataceae|Gemmata|obscuriglobus|freshwater|aerobe|non_gut|non_pathogenic

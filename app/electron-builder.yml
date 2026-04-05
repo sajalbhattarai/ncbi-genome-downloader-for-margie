@@ -1,0 +1,47 @@
+appId: com.sajalbhattarai.genome-download
+productName: Microbial Genome Downloader
+copyright: Copyright © 2025 sajalbhattarai
+
+directories:
+  output: dist/electron
+  buildResources: resources
+
+files:
+  - dist/renderer/**
+  - electron/**
+  - python/**
+  - "!node_modules/**"
+  - "!src/**"
+
+extraResources:
+  - from: "../bacteria_3000.tsv"
+    to: "bacteria_3000.tsv"
+  - from: "python"
+    to: "python"
+
+mac:
+  category: public.app-category.developer-tools
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  target:
+    - target: dmg
+      arch:
+        - arm64
+        - x64
+
+dmg:
+  title: "Microbial Genome Downloader"
+  window:
+    width: 600
+    height: 380
+  contents:
+    - x: 410
+      y: 190
+      type: link
+      path: /Applications
+    - x: 190
+      y: 190
+      type: file
+
+nsis:
+  oneClick: false

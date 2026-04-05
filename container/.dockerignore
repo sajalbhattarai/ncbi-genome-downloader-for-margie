@@ -1,0 +1,38 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Git
+.git/
+.github/
+
+# Local cache directory
+cache/
+
+# Data files (not needed in image)
+*.tsv
+*.html
+
+# Log files
+*.log
+logs/
+
+# SLURM job scripts (HPC-specific, not needed in image)
+slurm/
+
+# Downloaded genome data (large; bind-mounted at runtime)
+genomes/
+batches/
+
+# Apptainer/Singularity image files
+*.sif
+
+# macOS metadata
+.DS_Store
+
+# Local environment secrets
+.env
+
+# Top-level README (CREDITS.md inside container/ is intentionally kept)
+README.md
