@@ -58,7 +58,8 @@ echo ""
 # Quick Start
 # ---------------------------------------------------------------------------
 echo -e "${RESET}${GREEN}QUICK START:${RESET}${WHITE}"
-echo -e "  /app/scripts/01_prepare_accessions.py --tsv /data/bacteria_3000.tsv"
-echo -e "  /app/scripts/02_download_genomes.sh /data/batches/batch_0000.txt /data/genomes 4"
-echo -e "  /app/scripts/03_verify_downloads.py --outdir /data/genomes"
+echo -e "  genome-download help"
+echo -e "  genome-download run --tsv /data/bacteria_3000.tsv --batch-size 50 --parallel 4"
+echo -e "  genome-download verify --output-dir /data/genomes"
+echo -e "  genome-download shell"
 echo -e "${RESET}"

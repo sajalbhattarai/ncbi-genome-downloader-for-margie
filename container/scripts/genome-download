@@ -1,0 +1,316 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+show_help() {
+    cat <<'EOF'
+Microbial Reference Genome Downloader CLI
+
+Usage:
+  genome-download <command> [options]
+
+Commands:
+  help
+      Show this help text.
+
+  shell
+      Open an interactive shell inside the container.
+
+  prepare [--tsv PATH] [--batch-size N] [--batch-dir DIR]
+      Parse the input TSV and create batch files plus metadata.
+
+  download --batch-file PATH [--output-dir DIR] [--parallel N]
+      Download one batch file of accessions.
+
+  verify [--output-dir DIR] [--accessions PATH]
+      Verify downloaded genomes and write failed_accessions.txt when needed.
+
+  retry [--failed-file PATH] [--output-dir DIR] [--parallel N]
+      Retry only failed accessions from a previous verification run.
+
+  run [--tsv PATH] [--batch-size N] [--batch-dir DIR] [--output-dir DIR] [--parallel N]
+      Prepare all batches, download every batch sequentially, then verify.
+
+Environment:
+  NCBI_API_KEY    Optional NCBI API key for higher rate limits.
+
+Default container paths:
+    TSV file         /data/bacteria_3000.tsv
+    Batch directory  /data/batches
+    Output directory /data/genomes
+
+Examples:
+  genome-download prepare --tsv /data/bacteria_3000.tsv --batch-size 50
+  genome-download download --batch-file /data/batches/batch_0000.txt --parallel 4
+  genome-download verify --output-dir /data/genomes
+  genome-download run --tsv /data/bacteria_3000.tsv --batch-size 50 --parallel 4
+EOF
+}
+
+log() {
+    printf '[%s] %s\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$*"
+}
+
+require_value() {
+    local flag="$1"
+    local value="${2:-}"
+    if [[ -z "${value}" ]]; then
+        echo "ERROR: ${flag} requires a value." >&2
+        exit 1
+    fi
+}
+
+cmd_prepare() {
+    local tsv="/data/bacteria_3000.tsv"
+    local batch_size="50"
+    local batch_dir="/data/batches"
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --tsv)
+                require_value "$1" "${2:-}"
+                tsv="$2"
+                shift 2
+                ;;
+            --batch-size)
+                require_value "$1" "${2:-}"
+                batch_size="$2"
+                shift 2
+                ;;
+            --batch-dir)
+                require_value "$1" "${2:-}"
+                batch_dir="$2"
+                shift 2
+                ;;
+            -h|--help)
+                show_help
+                exit 0
+                ;;
+            *)
+                echo "ERROR: Unknown prepare option: $1" >&2
+                exit 1
+                ;;
+        esac
+    done
+
+    python3 /app/scripts/01_prepare_accessions.py \
+        --tsv "$tsv" \
+        --batch-size "$batch_size" \
+        --outdir "$batch_dir"
+}
+
+cmd_download() {
+    local batch_file=""
+    local output_dir="/data/genomes"
+    local parallel_jobs="4"
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --batch-file)
+                require_value "$1" "${2:-}"
+                batch_file="$2"
+                shift 2
+                ;;
+            --output-dir)
+                require_value "$1" "${2:-}"
+                output_dir="$2"
+                shift 2
+                ;;
+            --parallel)
+                require_value "$1" "${2:-}"
+                parallel_jobs="$2"
+                shift 2
+                ;;
+            -h|--help)
+                show_help
+                exit 0
+                ;;
+            *)
+                echo "ERROR: Unknown download option: $1" >&2
+                exit 1
+                ;;
+        esac
+    done
+
+    if [[ -z "$batch_file" ]]; then
+        echo "ERROR: download requires --batch-file PATH" >&2
+        exit 1
+    fi
+
+    bash /app/scripts/02_download_genomes.sh "$batch_file" "$output_dir" "$parallel_jobs"
+}
+
+cmd_verify() {
+    local output_dir="/data/genomes"
+    local accessions="/data/batches/accessions_all.txt"
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --output-dir)
+                require_value "$1" "${2:-}"
+                output_dir="$2"
+                shift 2
+                ;;
+            --accessions)
+                require_value "$1" "${2:-}"
+                accessions="$2"
+                shift 2
+                ;;
+            -h|--help)
+                show_help
+                exit 0
+                ;;
+            *)
+                echo "ERROR: Unknown verify option: $1" >&2
+                exit 1
+                ;;
+        esac
+    done
+
+    python3 /app/scripts/03_verify_downloads.py \
+        --outdir "$output_dir" \
+        --accessions "$accessions"
+}
+
+cmd_retry() {
+    local failed_file="/data/genomes/failed_accessions.txt"
+    local output_dir="/data/genomes"
+    local parallel_jobs="2"
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --failed-file)
+                require_value "$1" "${2:-}"
+                failed_file="$2"
+                shift 2
+                ;;
+            --output-dir)
+                require_value "$1" "${2:-}"
+                output_dir="$2"
+                shift 2
+                ;;
+            --parallel)
+                require_value "$1" "${2:-}"
+                parallel_jobs="$2"
+                shift 2
+                ;;
+            -h|--help)
+                show_help
+                exit 0
+                ;;
+            *)
+                echo "ERROR: Unknown retry option: $1" >&2
+                exit 1
+                ;;
+        esac
+    done
+
+    bash /app/scripts/04_retry_failed.sh "$failed_file" "$output_dir" "$parallel_jobs"
+}
+
+cmd_run() {
+    local tsv="/data/bacteria_3000.tsv"
+    local batch_size="50"
+    local batch_dir="/data/batches"
+    local output_dir="/data/genomes"
+    local parallel_jobs="4"
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --tsv)
+                require_value "$1" "${2:-}"
+                tsv="$2"
+                shift 2
+                ;;
+            --batch-size)
+                require_value "$1" "${2:-}"
+                batch_size="$2"
+                shift 2
+                ;;
+            --batch-dir)
+                require_value "$1" "${2:-}"
+                batch_dir="$2"
+                shift 2
+                ;;
+            --output-dir)
+                require_value "$1" "${2:-}"
+                output_dir="$2"
+                shift 2
+                ;;
+            --parallel)
+                require_value "$1" "${2:-}"
+                parallel_jobs="$2"
+                shift 2
+                ;;
+            -h|--help)
+                show_help
+                exit 0
+                ;;
+            *)
+                echo "ERROR: Unknown run option: $1" >&2
+                exit 1
+                ;;
+        esac
+    done
+
+    log "Preparing accession batches"
+    cmd_prepare --tsv "$tsv" --batch-size "$batch_size" --batch-dir "$batch_dir"
+
+    shopt -s nullglob
+    local batch_files=("$batch_dir"/batch_*.txt)
+    shopt -u nullglob
+
+    if [[ ${#batch_files[@]} -eq 0 ]]; then
+        echo "ERROR: No batch files found in ${batch_dir}" >&2
+        exit 1
+    fi
+
+    log "Downloading ${#batch_files[@]} batch file(s) with ${parallel_jobs} parallel job(s) per batch"
+    local batch_file
+    for batch_file in "${batch_files[@]}"; do
+        log "Running batch $(basename "$batch_file")"
+        cmd_download --batch-file "$batch_file" --output-dir "$output_dir" --parallel "$parallel_jobs"
+    done
+
+    log "Running verification"
+    cmd_verify --output-dir "$output_dir" --accessions "$batch_dir/accessions_all.txt"
+}
+
+main() {
+    local command="${1:-help}"
+    if [[ $# -gt 0 ]]; then
+        shift
+    fi
+
+    case "$command" in
+        help|-h|--help)
+            show_help
+            ;;
+        shell)
+            exec /bin/bash
+            ;;
+        prepare)
+            cmd_prepare "$@"
+            ;;
+        download)
+            cmd_download "$@"
+            ;;
+        verify)
+            cmd_verify "$@"
+            ;;
+        retry)
+            cmd_retry "$@"
+            ;;
+        run)
+            cmd_run "$@"
+            ;;
+        *)
+            echo "ERROR: Unknown command: ${command}" >&2
+            echo >&2
+            show_help >&2
+            exit 1
+            ;;
+    esac
+}
+
+main "$@"

@@ -17,7 +17,7 @@
 #
 # WHAT THIS JOB DOES:
 #   Each array task picks up one batch file (batch_XXXX.txt) containing up to
-#   BATCH_SIZE accession numbers, then runs 02_download_genomes.sh inside the
+#   BATCH_SIZE accession numbers, then runs genome-download download inside the
 #   Apptainer container to fetch genome FASTA, GFF3, and protein FASTA from
 #   NCBI Datasets, writing output under $WORK_DIR/genomes/.
 #
@@ -82,15 +82,15 @@ echo "Start Time:      $(date '+%Y-%m-%d %H:%M:%S')"
 echo "Node:            $(hostname)"
 echo "============================================================"
 
-# Run the download script inside the container
+# Run the download command inside the container
 apptainer exec \
     --bind "$WORK_DIR:/data" \
     --env NCBI_API_KEY="$NCBI_API_KEY" \
     "$SIF_PATH" \
-    bash /app/scripts/02_download_genomes.sh \
-        "/data/batches/$BATCH_FILE" \
-        "/data/genomes" \
-        "$N_PARALLEL"
+    genome-download download \
+        --batch-file "/data/batches/$BATCH_FILE" \
+        --output-dir /data/genomes \
+        --parallel "$N_PARALLEL"
 
 EXIT_CODE=$?
 

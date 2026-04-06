@@ -4,12 +4,13 @@
 
 A reproducible pipeline for bulk-downloading 2,999 complete bacterial reference genomes from NCBI RefSeq.
 
-Two ways to use this project:
+Three ways to use this project:
 
 | Mode | Best for | What you need |
 |------|----------|---------------|
 | **Mac Desktop App** (DMG) | Individual researchers on Apple Silicon or Intel Macs | macOS 12+, ~100 GB free disk space |
-| **HPC Pipeline** (Docker + SLURM) | Large-scale cluster downloads | Apptainer, SLURM, internet access from login node |
+| **Container CLI** (Docker or Apptainer) | Simple non-interactive command-line runs on Mac or Linux | Docker Desktop on Mac, or Apptainer on Linux |
+| **HPC Pipeline** (optional SLURM) | Large-scale cluster downloads | Apptainer, optional SLURM, internet access from login node |
 
 ---
 
@@ -77,6 +78,120 @@ npm install
 npm run dist          # builds app/dist/electron/*.dmg
 ```
 
+The DMG output stays architecture-specific and is generated dynamically by Electron Builder for the machine target you build for. Release users should continue using the latest DMG artifacts from the Releases page.
+
+---
+
+## Container CLI — Simple Non-Interactive Usage
+
+The container now exposes a single top-level CLI named `genome-download`.
+
+For an even simpler Docker workflow, the repository root also includes a `Makefile` with `make help`, `make build-mac`, `make run`, `make verify`, and `make push-ghcr` targets.
+
+That gives you one simple contract across environments:
+
+- Docker on Apple Silicon Mac: native `linux/arm64`
+- Docker on Intel Linux or Mac: native `linux/amd64`
+- Apptainer on HPC: typically built or pulled as `linux/amd64`
+
+SLURM is no longer required for the core pipeline. Users who already have their own cluster orchestration can call the same container commands directly.
+
+### CLI help
+
+After building or pulling the image, show the built-in help with:
+
+```bash
+docker run --rm ghcr.io/YOUR_GITHUB_USER/genome-download:latest help
+```
+
+Or inside Apptainer:
+
+```bash
+apptainer exec genome_download.sif genome-download help
+```
+
+### Commands
+
+The container CLI supports:
+
+- `help` — show usage
+- `shell` — open an interactive shell inside the container
+- `prepare` — create batch files from `bacteria_3000.tsv`
+- `download` — download one batch file
+- `verify` — verify completed downloads
+- `retry` — retry only failed accessions
+- `run` — execute prepare, all batch downloads, and verification in one command
+
+### Mac Docker quick start
+
+From the repository root:
+
+```bash
+make build-mac
+```
+
+Run the full pipeline non-interactively:
+
+```bash
+make run
+```
+
+This produces a plain directory layout under `3000-cli/` with batches, genomes, logs, and any retry file written automatically.
+
+Show the available shortcuts with:
+
+```bash
+make help
+```
+
+### Run step-by-step instead of all at once
+
+Prepare:
+
+```bash
+docker run --rm \
+  -v "$PWD:/workspace" \
+  -v "$PWD/3000-cli:/data" \
+  genome-download:latest prepare \
+  --tsv /workspace/bacteria_3000.tsv \
+  --batch-size 50 \
+  --batch-dir /data/batches
+```
+
+Download a single batch:
+
+```bash
+docker run --rm \
+  -v "$PWD/3000-cli:/data" \
+  -e NCBI_API_KEY="$NCBI_API_KEY" \
+  genome-download:latest download \
+  --batch-file /data/batches/batch_0000.txt \
+  --output-dir /data/genomes \
+  --parallel 4
+```
+
+Verify:
+
+```bash
+docker run --rm \
+  -v "$PWD/3000-cli:/data" \
+  genome-download:latest verify \
+  --output-dir /data/genomes \
+  --accessions /data/batches/accessions_all.txt
+```
+
+Retry failed genomes after verification:
+
+```bash
+docker run --rm \
+  -v "$PWD/3000-cli:/data" \
+  -e NCBI_API_KEY="$NCBI_API_KEY" \
+  genome-download:latest retry \
+  --failed-file /data/genomes/failed_accessions.txt \
+  --output-dir /data/genomes \
+  --parallel 2
+```
+
 ---
 
 ## Contents
@@ -129,54 +244,102 @@ All 2,999 genomes satisfy **every** one of the following filters:
 
 ---
 
-## Quick Start (Mac M2 / Apple Silicon)
+## Container Build And Publish
 
-### 1. Build the container
-
-The image targets `linux/amd64` for HPC compatibility. From the repository root:
+### 1. Build locally for Mac Apple Silicon
 
 ```bash
-cd container
+docker buildx build --platform linux/arm64 \
+  -t genome-download:latest \
+  --load container
+```
+
+### 2. Build locally for Linux amd64 / Apptainer export
+
+From the repository root:
+
+```bash
 docker buildx build --platform linux/amd64 \
   -t ghcr.io/YOUR_GITHUB_USER/genome-download:latest \
-  --load .
+  --load container
 ```
 
-> **Note:** The `--load` flag loads the image into your local Docker daemon for local testing.
-> On Apple Silicon, this cross-compilation step is handled transparently by Buildx + QEMU.
+> `--load` imports the image into your local Docker daemon for testing.
+> On Apple Silicon, Docker Buildx handles the amd64 cross-build.
 
-### 2. Test locally
+### 3. Test locally
 
-Verify the NCBI `datasets` CLI is functional inside the container:
+Verify the CLI is functional inside the container:
 
 ```bash
-docker run --rm ghcr.io/YOUR_GITHUB_USER/genome-download:latest datasets --version
+docker run --rm ghcr.io/YOUR_GITHUB_USER/genome-download:latest help
 ```
 
-You should see output like `datasets version: 16.x.x`.
+You should see the `genome-download` command help.
 
-### 3. Push to GitHub Container Registry (GHCR)
+### 4. Push multi-arch images to GitHub Container Registry (GHCR)
 
 ```bash
 # Authenticate (requires a Personal Access Token with write:packages scope)
 echo $GITHUB_TOKEN | docker login ghcr.io -u YOUR_GITHUB_USER --password-stdin
 
-# Build and push in one step
-docker buildx build --platform linux/amd64 \
+# Build and push both arm64 and amd64 manifests in one step
+docker buildx build --platform linux/arm64,linux/amd64 \
   -t ghcr.io/YOUR_GITHUB_USER/genome-download:latest \
-  --push .
+  --push container
 ```
+
+If you use GitHub CLI instead of a manually exported `GITHUB_TOKEN`, make sure the active token also has `write:packages`. A plain repo-scoped token is not sufficient for GHCR pushes.
 
 The GitHub Actions workflow (`.github/workflows/build-push.yml`) automates this on every push to `main` that touches `container/**`.
 
 ---
 
-## HPC Usage (Apptainer + SLURM)
+## Apptainer Usage Without SLURM
+
+If you just want a simple Linux CLI flow without any scheduler, use the same container commands through Apptainer.
+
+### 1. Build or pull an amd64 image
+
+Either pull from GHCR:
+
+```bash
+apptainer pull genome_download.sif docker://ghcr.io/YOUR_GITHUB_USER/genome-download:latest
+```
+
+Or convert a local Docker image on a Linux host in the usual way supported by your environment.
+
+### 2. Run the full pipeline
+
+```bash
+mkdir -p genome_download/{batches,genomes}
+
+apptainer exec \
+  --bind "$PWD:/workspace" \
+  --bind "$PWD/genome_download:/data" \
+  genome_download.sif \
+  genome-download run \
+  --tsv /workspace/bacteria_3000.tsv \
+  --batch-size 50 \
+  --batch-dir /data/batches \
+  --output-dir /data/genomes \
+  --parallel 4
+```
+
+### 3. Show CLI help
+
+```bash
+apptainer exec genome_download.sif genome-download help
+```
+
+---
+
+## HPC Usage (Apptainer + Optional SLURM)
 
 ### Prerequisites
 
 - Apptainer (or Singularity ≥ 3.x) available on the cluster
-- SLURM workload manager
+- SLURM workload manager if you want scheduler-managed batch execution
 - Internet access from the login node (to pull the image)
 - `bacteria_3000.tsv` copied to the HPC
 
@@ -210,7 +373,7 @@ Open `container/slurm/02_download_array.slurm` and confirm the `CONFIG` block ma
 sbatch container/slurm/02_download_array.slurm
 ```
 
-This launches up to 10 concurrent SLURM array tasks (configurable via `%10` in the `--array` directive). Each task downloads one batch of 50 genomes using `ncbi-datasets` inside the container.
+This launches up to 10 concurrent SLURM array tasks (configurable via `%10` in the `--array` directive). Each task downloads one batch of 50 genomes using the same `genome-download` container tooling under the hood.
 
 #### 4. Verify and retry failures
 

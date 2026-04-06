@@ -13,9 +13,7 @@
 #   sbatch 03_verify_and_retry.slurm
 #
 # FIXES vs original:
-#   - Corrected CLI flags for 03_verify_downloads.py:
-#       --genome-dir  →  --outdir
-#       --failed-out  →  (removed; script auto-writes <outdir>/failed_accessions.txt)
+#   - Uses the top-level genome-download CLI for verify and retry commands
 #   - Corrected failed_accessions.txt path: lives under OUTPUT_DIR (genomes/),
 #     not under WORK_DIR directly.
 # =============================================================================
@@ -56,15 +54,11 @@ echo "Output directory: $OUTPUT_DIR"
 echo "Accessions file:  $ACCESSIONS_FILE"
 echo ""
 
-# Correct flags:
-#   --outdir      root directory containing one sub-directory per GCF accession
-#   --accessions  plain-text file with one GCF per line (from 01_prepare_accessions.py)
-# The script auto-writes failed accessions to <outdir>/failed_accessions.txt
 apptainer exec \
     --bind "$WORK_DIR:/data" \
     "$SIF_PATH" \
-    python3 /app/scripts/03_verify_downloads.py \
-        --outdir     /data/genomes \
+    genome-download verify \
+        --output-dir /data/genomes \
         --accessions /data/batches/accessions_all.txt
 
 VERIFY_EXIT=$?
@@ -83,14 +77,12 @@ if [[ -f "$FAILED_FILE" ]] && [[ -s "$FAILED_FILE" ]]; then
     echo "Failed file: $FAILED_FILE"
     echo ""
 
-    # 04_retry_failed.sh expects: <failed_accessions.txt> <output_dir> [n_parallel]
-    # The failed file is at /data/genomes/failed_accessions.txt inside the container.
     apptainer exec \
         --bind "$WORK_DIR:/data" \
         "$SIF_PATH" \
-        bash /app/scripts/04_retry_failed.sh \
-            /data/genomes/failed_accessions.txt \
-            /data/genomes
+        genome-download retry \
+            --failed-file /data/genomes/failed_accessions.txt \
+            --output-dir /data/genomes
 
     RETRY_EXIT=$?
     echo ""
@@ -105,8 +97,8 @@ if [[ -f "$FAILED_FILE" ]] && [[ -s "$FAILED_FILE" ]]; then
     apptainer exec \
         --bind "$WORK_DIR:/data" \
         "$SIF_PATH" \
-        python3 /app/scripts/03_verify_downloads.py \
-            --outdir     /data/genomes \
+        genome-download verify \
+            --output-dir /data/genomes \
             --accessions /data/batches/accessions_all.txt
 
     REVERIFY_EXIT=$?
@@ -133,11 +125,11 @@ if [[ -f "$FAILED_FILE" ]] && [[ -s "$FAILED_FILE" ]]; then
     echo "Accessions still failing   : $STILL_FAILED"
     echo ""
     echo "Investigate the entries in $FAILED_FILE"
-    echo "and consider re-running 04_retry_failed.sh manually:"
+    echo "and consider re-running the retry command manually:"
     echo ""
     echo "  apptainer exec --bind \"$WORK_DIR:/data\" \"$SIF_PATH\" \\"
-    echo "    bash /app/scripts/04_retry_failed.sh \\"
-    echo "      /data/genomes/failed_accessions.txt /data/genomes"
+    echo "    genome-download retry --failed-file /data/genomes/failed_accessions.txt \\"
+    echo "      --output-dir /data/genomes"
 else
     echo "Accessions still failing   : 0"
     echo ""

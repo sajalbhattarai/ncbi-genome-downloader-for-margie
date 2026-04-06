@@ -9,9 +9,9 @@
 #     3. Partition the accession list into per-task batch files
 #
 # AFTER THIS SCRIPT COMPLETES:
-#   Edit 02_download_array.slurm (set WORK_DIR, SIF_NAME, array range),
-#   then submit it with: sbatch 02_download_array.slurm
-#   After the array job finishes: sbatch 03_verify_and_retry.slurm
+#   You can either:
+#     A. run the container CLI directly with apptainer exec ... genome-download run
+#     B. edit 02_download_array.slurm and submit it with sbatch
 #
 # USAGE:
 #   bash 01_setup_hpc.sh
@@ -109,7 +109,7 @@ fi
 echo ""
 
 # ------------------------------------------------------------------------------
-# Step 3: Run 01_prepare_accessions.py inside container to create batch files
+# Step 3: Run genome-download prepare inside container to create batch files
 # ------------------------------------------------------------------------------
 echo "------------------------------------------------------------"
 echo "[Step 3] Partitioning accession list into batches of $BATCH_SIZE ..."
@@ -120,10 +120,10 @@ echo "------------------------------------------------------------"
 apptainer exec \
     --bind "$WORK_DIR:/data" \
     "$WORK_DIR/$SIF_NAME" \
-    python3 /app/scripts/01_prepare_accessions.py \
+    genome-download prepare \
         --tsv /data/bacteria_3000.tsv \
         --batch-size "$BATCH_SIZE" \
-        --outdir /data/batches
+        --batch-dir /data/batches
 
 echo ""
 echo "[Step 3] Batch files written to $WORK_DIR/batches/"
@@ -158,6 +158,14 @@ echo ""
 echo "============================================================"
 echo " SETUP COMPLETE — Next Steps"
 echo "============================================================"
+echo ""
+echo "  Option A: run the full pipeline without SLURM:"
+echo ""
+echo "       apptainer exec --bind \"$WORK_DIR:/data\" \"$WORK_DIR/$SIF_NAME\" \\" 
+echo "         genome-download run --tsv /data/bacteria_3000.tsv --batch-size $BATCH_SIZE \\" 
+echo "         --batch-dir /data/batches --output-dir /data/genomes --parallel 4"
+echo ""
+echo "  Option B: use SLURM array jobs:"
 echo ""
 echo "  1. Edit container/slurm/02_download_array.slurm:"
 echo "       - Set WORK_DIR=\"$WORK_DIR\""
